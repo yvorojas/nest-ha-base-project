@@ -10,12 +10,13 @@ export default class UserPostgreSQLAdapter
     super(new UserConnector(), User);
   }
 
-  createUser = async (firstName: string, lastName: string) =>
-    await this.create(
+  createUser = async (firstName: string, lastName: string) => {
+    console.log(firstName, lastName);
+    return await this.create(
       new User({
         firstName,
         lastName,
-        id: '3c67d7af-5630-4d0f-82b9-a13e89f7171c',
       }),
     );
+  };
 }

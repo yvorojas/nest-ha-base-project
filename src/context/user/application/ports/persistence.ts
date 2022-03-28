@@ -1,14 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Scope } from '@nestjs/common';
 import UserDto from '../../domain/entities/UserDto';
 import UserPersistenceAdapter from '../../infrastructure/adapter/persistence';
 import UserPostgreSQLAdapter from '../../infrastructure/adapter/persistence/postgreSQL';
 import UserMockAdapter from '../../infrastructure/adapter/persistence/mock';
 
-@Injectable()
+@Injectable({ scope: Scope.DEFAULT })
 export default class UserPersistencePort {
   private adapter: UserPersistenceAdapter;
   constructor() {
-    this.adapter = this.getAdapter('MOCK');
+    this.adapter = this.getAdapter(process.env.ADAPTER);
   }
 
   private getAdapter = (engine: string): UserPersistenceAdapter => {

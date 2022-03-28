@@ -3,13 +3,14 @@ import User from './postgreSQL/entities/User';
 
 export default class UserConnector extends BaseConnector {
   constructor() {
+    console.log(process.env.DB_HOST);
     super({
       type: 'postgres',
-      host: 'localhost',
+      host: process.env.DB_HOST,
       port: 5432,
-      username: 'postgres',
-      password: '123456',
-      database: 'users',
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE_NAME,
       entities: [User],
     });
   }

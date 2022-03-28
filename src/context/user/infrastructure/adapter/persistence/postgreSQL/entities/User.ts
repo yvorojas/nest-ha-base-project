@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
 import UserEntity from '../../entities/User';
 
-@Entity({ name: 'usuario' })
+@Entity({ name: 'user' })
 export default class User extends BaseEntity implements UserEntity {
   constructor(fields?: Record<string, unknown>) {
     super();

@@ -12,9 +12,9 @@ export default class BasePersistenceAdapter {
       .get()
       .getRepository(this.repository)
       .findOne(id)
-      .then(async (response) => {
+      .then(async (response) => response)
+      .finally(async () => {
         await this.connector.close();
-        return response;
       });
   };
 
@@ -23,6 +23,7 @@ export default class BasePersistenceAdapter {
     const connectorRepository = this.connector
       .get()
       .getRepository(this.repository);
+    console.log(entity);
     const createdEntity = await connectorRepository.save(entity);
     await this.connector.close();
     return createdEntity;
